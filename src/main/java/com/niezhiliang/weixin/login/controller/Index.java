@@ -1,5 +1,7 @@
 package com.niezhiliang.weixin.login.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.niezhiliang.weixin.login.utils.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,6 +31,9 @@ public class Index {
     @Value("${wx.request_url}")
     private String request_url;
 
+    @Value("${wx.userinfo_url}")
+    private String userinfo_url;
+
     @Autowired
     private HttpServletRequest request;
 
@@ -44,6 +49,7 @@ public class Index {
         String code = request.getParameter("code");
         if (code != null) {
             StringBuffer url = new StringBuffer();
+            /*********获取token************/
             url.append(request_url)
                     .append("appid=")
                     .append(appid)
@@ -54,8 +60,22 @@ public class Index {
                     .append("&grant_type=")
                     .append(grant_type);
             logger.info(url.toString());
-            String result =
-                HttpUtil.getResult(url.toString());
+
+            JSONObject jsonObject =
+                    JSON.parseObject(HttpUtil.getResult(url.toString()));
+            String openid =jsonObject.get("openid").toString();
+            String token = jsonObject.get("access_token").toString();
+
+            /*********获取userinfo************/
+            url = new StringBuffer();
+            url.append(userinfo_url)
+                    .append("access_token=")
+                    .append(token)
+                    .append("&openid=")
+                    .append(openid);
+            logger.info(url.toString());
+            String result = HttpUtil.getResult(url.toString());
+
             return result;
         }
 
