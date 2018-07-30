@@ -46,6 +46,7 @@ public class Index {
             StringBuffer url = new StringBuffer();
             url.append(request_url)
                     .append("appid=")
+                    .append(appid)
                     .append("&secret=")
                     .append(secret)
                     .append("&code=")
