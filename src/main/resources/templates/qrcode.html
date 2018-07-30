@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>微信登录页面</title>
+    <style>
+        .impowerBox .qrcode {width: 200px;}
+        .impowerBox .title {display: none;}
+        .impowerBox .info {width: 200px;}
+        .status_icon {display: none}
+        .impowerBox .status {text-align: center;}
+    </style>
+    <!--<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>-->
+</head>
+<body>
+<div id="impowerBox" class="wxqr">
+    <img src="http://huluwa-open-api.oss-cn-qingdao.aliyuncs.com/seal-img/erweima.png"/>
+</div>
+</body>
+<script>
+    var obj = new WxLogin({
+
+        id:"wxqr",
+
+        appid: "wx9c2707e2093dee43",
+
+        scope: "snsapi_login",
+
+        redirect_uri: "http://sign.fangxinqian.cn",
+
+        state: "STATE",
+
+        style: "white"
+
+    });
+</script>
+</html>
