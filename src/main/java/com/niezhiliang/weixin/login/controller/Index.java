@@ -40,6 +40,7 @@ public class Index {
     @RequestMapping(value = "callback")
     @ResponseBody
     public String callBack() {
+        logger.info(appid + "\t" + secret + "\t"+grant_type+"\t"+request_url);
         String code = request.getParameter("code");
         if (code != null) {
             StringBuffer url = new StringBuffer();
