@@ -3,6 +3,7 @@ package com.niezhiliang.weixin.login.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
@@ -23,13 +24,14 @@ public class Index {
     }
 
     @RequestMapping(value = "callback")
+    @ResponseBody
     public String callBack() {
         Enumeration enu=request.getParameterNames();
         while(enu.hasMoreElements()){
             String paraName=(String)enu.nextElement();
             System.out.println(paraName+": "+request.getParameter(paraName));
         }
-        return null;
+        return "success";
     }
 
     @RequestMapping(value = "login")
