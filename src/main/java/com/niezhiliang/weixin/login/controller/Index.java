@@ -75,8 +75,9 @@ public class Index {
                     .append(openid);
             logger.info(url.toString());
             String result = HttpUtil.getResult(url.toString());
+            logger.info(result);
 
-            return result;
+            return "success";
         }
 
         return "success";
