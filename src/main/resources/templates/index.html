@@ -2,9 +2,16 @@
 <html  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>微信登录首页</title>
 </head>
 <body>
-dsfsdfsdfsd
+    <div style="text-align: center">
+        <h1>this is main page</h1>
+        用户名：<span th:text="${username}">default message</span>
+        密码：<span th:text="${password}">default message</span>
+        微信基本信息：
+        <span th:text="${wxinfo}"></span>
+    </div>
+
 </body>
 </html>

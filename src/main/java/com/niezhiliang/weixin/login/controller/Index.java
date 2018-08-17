@@ -6,9 +6,12 @@ import com.niezhiliang.weixin.login.utils.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -16,7 +19,6 @@ import java.util.logging.Logger;
  * @Email nzlsgg@163.com
  */
 @Controller
-@RequestMapping(value = "/")
 public class Index {
     private final static Logger logger = Logger.getLogger(Index.class.getName());
     @Value("${wx.appid}")
@@ -37,13 +39,16 @@ public class Index {
     @Autowired
     private HttpServletRequest request;
 
+    private static Map<String,String> map = new HashMap<String,String>();
+
     @RequestMapping(value = "index")
     public String index() {
         return "index";
     }
 
-    @RequestMapping(value = "callback")
-    public String callBack() {
+
+    @RequestMapping(value = "/callback")
+    public String callBack(Model model) {
         logger.info(appid + "\t" + secret + "\t"+grant_type+"\t"+request_url);
         String code = request.getParameter("code");
         if (code != null) {
@@ -75,16 +80,41 @@ public class Index {
             logger.info(url.toString());
             String result = HttpUtil.getResult(url.toString());
             logger.info(result);
+            model.addAttribute("wxinfo",result);
+            model.addAttribute("username",map.get("username"));
+            model.addAttribute("password",map.get("password"));
 
-            return "success";
+            return "index";
         }
 
-        return "success";
+        return "index";
+    }
+
+    @RequestMapping(value = "wxlogin")
+    public String wxlogin() {
+
+        return "qrcode";
     }
 
     @RequestMapping(value = "login")
     public String login() {
 
-        return "qrcode";
+        return "login";
+    }
+
+    @RequestMapping(value = "dologin")
+    public String dologin(String username, String password,Model model) {
+        if (username.equals("admin")&&password.equals("admin")) {
+
+            model.addAttribute("username",username);
+            model.addAttribute("password",password);
+
+            map.put("username",username);
+            map.put("password",password);
+
+            return "index";
+
+        }
+        return "login";
     }
 }

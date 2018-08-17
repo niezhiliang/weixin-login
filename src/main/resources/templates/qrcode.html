@@ -10,28 +10,23 @@
         .status_icon {display: none}
         .impowerBox .status {text-align: center;}
     </style>
-    <!--<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>-->
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
 </head>
 <body>
-<div id="impowerBox" class="wxqr">
-    <img src="http://huluwa-open-api.oss-cn-qingdao.aliyuncs.com/seal-img/erweima.png"/>
+<div id="obj" style="text-align: center">
+
 </div>
 </body>
 <script>
     var obj = new WxLogin({
-
-        id:"wxqr",
-
-        appid: "wx9c2707e2093dee43",
-
+        self_redirect:false,//true将页面跳转放在ifream里面   false直接跳转到要跳转的页面
+        id:"obj",
+        appid: "wx0c05ce174cd624b7",
         scope: "snsapi_login",
-
-        redirect_uri: "http://sign.fangxinqian.cn",
-
-        state: "STATE",
-
-        style: "white"
-
+        redirect_uri: "http%3a%2f%2fwww.niezhiliang.com%2fcallback",
+        state: "",
+        style: "",
+        href: ""
     });
 </script>
 </html>
