@@ -1,6 +1,6 @@
 # weixin-login
 微信第三方登录
-![演示gif](https://github.com/niezhiliang/springbootwebsocket/blob/master/demo.gif)
+![演示gif](https://github.com/niezhiliang/weixin-login/blob/master/imgs/weixin.gif)
 
 
 #### 第一步
