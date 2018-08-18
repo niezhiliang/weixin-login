@@ -2,6 +2,7 @@ package com.niezhiliang.weixin.login.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.niezhiliang.weixin.login.domain.ResponseParams;
 import com.niezhiliang.weixin.login.utils.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -79,7 +79,11 @@ public class Index {
                     .append(openid);
             logger.info(url.toString());
             String result = HttpUtil.getResult(url.toString());
+
             logger.info(result);
+
+            ResponseParams wxResult = JSON.parseObject(result,ResponseParams.class);
+
             model.addAttribute("wxinfo",result);
             model.addAttribute("username",map.get("username"));
             model.addAttribute("password",map.get("password"));

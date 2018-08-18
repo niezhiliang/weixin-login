@@ -21,6 +21,16 @@ public class ResponseParams {
 
     private String headimgurl;
 
+    private String unionid;
+
+    public String getUnionid() {
+        return unionid;
+    }
+
+    public void setUnionid(String unionid) {
+        this.unionid = unionid;
+    }
+
     public String getOpenid() {
         return openid;
     }
