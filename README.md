@@ -11,9 +11,6 @@
  
  平常我们是`http://www.niezhiliang/callback` 必须转成这个样子 `http%3a%2f%2fwww.niezhiliang.com%2fcallback`
  
- 
- 还有回调地址不能跟端口号 如：`http://www.niezhiliang.com:8080/callback` 这样是不行的   
- 
  会报你的`redirect_uri` 不正确
  
  
